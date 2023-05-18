@@ -1,16 +1,26 @@
 import { Button, Typography } from "@mui/material";
-import { BoxAvatarStyled, BoxCardStyled, BoxContainsStyled, ImageStyled } from "./styles";
+import { BoxAvatarStyled, BoxContainsStyled, ImageStyled } from "./styles";
+import { ProfessorInterface } from "@data/@types/professor";
 
-export default function ProfessorCard() {
+interface ProfessorCardProps {
+  professor: ProfessorInterface,
+  onClick: (professor: ProfessorInterface) => void,
+}
+
+export default function ProfessorCard({ professor, onClick }: ProfessorCardProps) {
   return (
-    <BoxCardStyled>
+    <>
       <BoxAvatarStyled>
-        <ImageStyled src="https://github.com/gabrielsens.png" />
+        {professor.foto_perfil ? (
+          <ImageStyled src={professor.foto_perfil} alt=""/>
+        ) : (
+          <ImageStyled src={'/user.svg'} alt=""/>
+        )}
       </BoxAvatarStyled>
     <BoxContainsStyled>
       <div className="text-container">
         <Typography variant="h6" className="descricao" paragraph>
-          nome
+          {professor.nome}
         </Typography>
         <Typography
           variant="body2"
@@ -18,13 +28,13 @@ export default function ProfessorCard() {
           className="descricao"
           paragraph
         >
-          descrticao Lorem ipsum dolor sit, amet consectetur adipisicing elit. Error soluta nisi aut fugiat quos, ad at quis beatae, modi possimus tenetur aliquam doloremque rerum officia sapiente unde eligendi? Voluptas, excepturi. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab enim suscipit illo quos tempore deleniti facilis, beatae repellendus commodi voluptatum earum vero minima! Et molestias, dignissimos hic sit similique blanditiis!
+          {professor.descricao}
         </Typography>
       </div>
-      <Button variant="outlined" color="inherit">
+      <Button variant="outlined" color="inherit" onClick={() => onClick(professor)}>
         Ver detalhes
       </Button>
     </BoxContainsStyled>
-    </BoxCardStyled>
+    </>
   );
 }

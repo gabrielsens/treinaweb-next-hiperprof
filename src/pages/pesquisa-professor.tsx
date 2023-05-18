@@ -1,5 +1,6 @@
 import PageTitle from "@components/data-display/PageTitle";
 import ProfessorCard from "@components/data-display/ProfessorCard";
+import ListProfessorCard from "@components/data-display/ProfessorCard/ListProfessorCard";
 import { Icon, TextField } from "@mui/material";
 
 export default function PesquisaProfessorPage() {
@@ -20,7 +21,7 @@ export default function PesquisaProfessorPage() {
         subtitle="Clique sobre um professor para ver os detalhes e poder marcar uma aula com ele."
       />
 
-      <ProfessorCard />
+      <ListProfessorCard professores={[1, 2, 3, 4, 5, 6]} onClick={(professor) => {}} />
     </>
   )
 }
