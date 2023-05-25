@@ -11,9 +11,12 @@ interface FetchProps<T> {
 
 type FetchComponent = <T>(props: FetchProps<T>) => ReactElement;
 
-const Fetch: FetchComponent = ({ data, render, message, maxLength = 3 }) => {
+const Fetch: FetchComponent = ({ data, render, message, maxLength = null }) => {
   if (data) {
-    const dataFilted = data.slice(0, maxLength);
+    let dataFilted = data;
+
+    if(maxLength !== null)
+      dataFilted = data.slice(0, maxLength);
 
     if (data.length === 0) {
       return (
