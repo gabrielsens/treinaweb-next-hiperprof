@@ -32,18 +32,21 @@ export default function useDetalheProfessor() {
       Router.home.push(router);
     }
 
-    // return () => {
-    //   sessionStorage.removeItem('hiperprof_professor')
-    // }
+    return () => {
+      sessionStorage.removeItem('hiperprof_professor')
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   async function getProfessores() {
-    await apiService.get('/api/professores', {
-      params: router.query.search
+    await apiService.get(`/api/professores?q=${router?.query?.search ?? ''}`)
+    .then(({ data }) => {
+      return setProfessoresreslacionados(data)
     })
-    .then(({ data }) => setProfessoresreslacionados(data))
-    .catch(() => setProfessoresreslacionados([]))
+    .catch((error) => {
+      setProfessoresreslacionados([])
+      console.log(error);
+    })
   }
 
   function selecionarProfessor(professor: ProfessorInterface) {
