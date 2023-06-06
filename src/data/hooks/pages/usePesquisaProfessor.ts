@@ -13,7 +13,6 @@ export default function usePesquisaProfessor() {
     console.log(router?.query?.search)
     apiService.get<ProfessorInterface[]>(`/api/professores?q=${router?.query?.search ?? ''}`).then((res) => {
       const data = res.data;
-      console.log("🚀 ~ file: usePesquisaProfessor.ts:15 ~ apiService.get<ProfessorInterface[]> ~ res:", res)
       if (data)
         setProfessores(data);
 
