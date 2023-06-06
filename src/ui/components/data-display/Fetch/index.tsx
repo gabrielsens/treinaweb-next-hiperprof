@@ -5,7 +5,7 @@ import { ReactElement } from "react";
 interface FetchProps<T> {
   data: T[] | undefined;
   render: (dataFiltered: T[]) => ReactElement;
-  message: string,
+  message?: string,
   maxLength?: number
 }
 

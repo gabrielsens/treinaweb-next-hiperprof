@@ -1,14 +1,16 @@
 import { PageSubtitleStyled, PageTitleContainer, PageTitleStyled } from "./styles";
 
-interface PageTitleProps{
+import { TypographyProps } from '@mui/material'
+
+interface PageTitleProps extends Omit<TypographyProps, "title"> {
   title: string
   subtitle?: string
 }
 
-export default function PageTitle({ title, subtitle }: PageTitleProps ) {
+export default function PageTitle({ title, subtitle, color = "primary" }: PageTitleProps ) {
   return (
   <PageTitleContainer>
-    <PageTitleStyled color="primary">
+    <PageTitleStyled color={color}>
       {title}
     </PageTitleStyled>
     <PageSubtitleStyled>

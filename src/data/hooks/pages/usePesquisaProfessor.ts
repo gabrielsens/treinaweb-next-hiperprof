@@ -33,7 +33,7 @@ export default function usePesquisaProfessor() {
 
   function handleSelectProfessor(professor: ProfessorInterface) {
     sessionStorage.setItem('hiperprof_professor', JSON.stringify(professor));
-    Router.detalheProfessor.push(router)
+    Router.detalheProfessor.push(router, router.query.search as string)
   }
 
   return {
